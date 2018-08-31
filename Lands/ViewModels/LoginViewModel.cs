@@ -61,7 +61,6 @@
         }
         #endregion
 
-        //send
         #region Commands
         public ICommand LoginCommand
         {

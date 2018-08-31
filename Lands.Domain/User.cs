@@ -32,6 +32,11 @@
         [Display(Name = "Image")]
         public string ImagePath { get; set; }
 
+        public int UserTypeId { get; set; }
+
+        [JsonIgnore]
+        public virtual UserType UserType { get; set; }
+
         [Display(Name = "Image")]
         public string ImageFullPath
         {
@@ -43,7 +48,7 @@
                 }
 
                 return string.Format(
-                    "http://webapixamarin-001-site1.atempurl.com/{0}",
+                    "http://landsapi0-001-site1.htempurl.com/{0}",
                     ImagePath.Substring(1));
             }
         }
