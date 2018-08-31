@@ -6,8 +6,8 @@
     using System.ComponentModel;
     using GalaSoft.MvvmLight.Command;
     using Views;
-	using Helpers;
-
+    using Helpers;
+    using System;
 
     public class LoginViewModel : BaseViewModel
     {
@@ -56,7 +56,7 @@
             this.apiService = new ApiService();
 
             this.IsRemembered = true;
-			this.IsEnabled = true;
+            this.IsEnabled = true;
 
         }
         #endregion
@@ -75,17 +75,17 @@
             if (string.IsNullOrEmpty(this.Email))
             {
                 await Application.Current.MainPage.DisplayAlert(
-					Languages.Error,
-					Languages.EmailValidation,
-					Languages.Accept);
+                    Languages.Error,
+                    Languages.EmailValidation,
+                    Languages.Accept);
                 return;
             }
             if (string.IsNullOrEmpty(this.Password))
             {
                 await Application.Current.MainPage.DisplayAlert(
-					Languages.Error,
-					Languages.Accept,
-					Languages.Accept);
+                    Languages.Error,
+                    Languages.Accept,
+                    Languages.Accept);
                 return;
             }
 
@@ -100,14 +100,14 @@
                 this.IsEnabled = false;
 
                 await Application.Current.MainPage.DisplayAlert(
-					Languages.Error,
+                    Languages.Error,
                     connection.Message,
-					Languages.Accept);
+                    Languages.Accept);
                 return;
             }
 
             var token = await this.apiService.GetToken(
-                "http://webapixamarin-001-site1.atempurl.com",
+                "http://landsapi0-001-site.htempurl.com",
                 this.Email,
                 this.Password);
 
@@ -117,9 +117,9 @@
                 this.IsEnabled = true;
 
                 await Application.Current.MainPage.DisplayAlert(
-					Languages.Error,
+                    Languages.Error,
                     "Something was wrong, please try later.",
-					Languages.Accept);
+                    Languages.Accept);
                 return;
             }
 
@@ -129,9 +129,9 @@
                 this.IsEnabled = true;
 
                 await Application.Current.MainPage.DisplayAlert(
-					Languages.Error,
+                    Languages.Error,
                     token.ErrorDescription,
-					Languages.Accept);
+                    Languages.Accept);
                 this.Password = string.Empty;
                 return;
             }
@@ -147,7 +147,7 @@
 
             mainViewModel.Lands = new LandsViewModel();
 
-			Application.Current.MainPage = new MasterPage();
+            Application.Current.MainPage = new MasterPage();
 
             this.IsRunning = false;
             this.IsEnabled = true;
@@ -155,8 +155,20 @@
             this.Email = string.Empty;
             this.Password = string.Empty;
 
+        }
 
+        public ICommand RegisterCommand
+        {
+            get
+            {
+                return new RelayCommand(Register);
+            }
+        }
 
+        private async void Register()
+        {
+            MainViewModel.GetInstance().Register = new RegisterViewModel();
+            await Application.Current.MainPage.Navigation.PushAsync(new RegisterPage());
         }
         #endregion
         //Veficando se está ok

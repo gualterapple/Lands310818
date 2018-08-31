@@ -31,6 +31,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lands.Domain\Lands.Domain.csproj" />
+    <ProjectReference Include="..\Lands.Backend\Lands.Backend.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Resources\Resource.Designer.cs">

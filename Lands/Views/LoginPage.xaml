@@ -84,9 +84,9 @@
                 Orientation="Horizontal"
                     VerticalOptions="CenterAndExpand">
                 <Button
-                   Command="{Binding LoginCommand}"
                    BackgroundColor=" Orange"
                    BorderRadius="10"
+                   Command="{Binding LoginCommand}"
                    HeightRequest="40"
                    HorizontalOptions="FillAndExpand"
                    IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
@@ -97,12 +97,12 @@
                 <Button
                    BackgroundColor="Silver"
                    BorderRadius="10"
+                   Command="{Binding RegisterCommand}"
                    HeightRequest="40"
                    HorizontalOptions="FillAndExpand"
                    IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
                    Text="Cadastrar"
-                   TextColor="White">
-                    
+                   TextColor="White">   
                 </Button>
             </StackLayout>
             <StackLayout
